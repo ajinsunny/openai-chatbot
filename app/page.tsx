@@ -27,10 +27,10 @@ export default function Example() {
               <span className="sr-only">Your Company</span>
               <Image
                 className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                src="/veronica-logo.webp"
                 alt=""
-                width={500}
-                height={500}
+                width={1000}
+                height={1000}
               />
             </a>
           </div>
