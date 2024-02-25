@@ -55,6 +55,17 @@ export default function Login() {
         <CardFooter>
           <Button className="w-full">Login</Button>
         </CardFooter>
+        <div className="relative flex justify-center text-xs">
+          <span className="bg-background px-2 py-2 text-muted-foreground">
+            Don&apos;t have an account?
+            <a
+              href="/createaccount"
+              className="text-blue-500 font-bold underline ps-2"
+            >
+              Sign up
+            </a>
+          </span>
+        </div>
       </Card>
     </main>
   );
