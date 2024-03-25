@@ -2,18 +2,11 @@
 
 // ChatInterface component
 import ChatLayout from "@/components/chat/chat-layout";
-import { cookies } from "next/headers";
+import { useChat } from "ai/react";
 import React, { useState } from "react";
 
 export default function ChatInterface() {
-  const [messages, setMessages] = useState<{ id: number; text: string }[]>([]);
-  const [inputValue, setInputValue] = useState("");
-
-  const handleSendMessage = () => {
-    if (!inputValue.trim()) return; // Prevent sending empty messages
-    setMessages([...messages, { id: messages.length + 1, text: inputValue }]);
-    setInputValue(""); // Clear input field after sending
-  };
+  const { messages, input, handleInputChange, handleSubmit } = useChat();
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
@@ -26,19 +19,20 @@ export default function ChatInterface() {
         </div>
         <div className="p-4">
           <div className="flex items-center">
-            <input
-              type="text"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              placeholder="Type your message here..."
-              className="flex-grow p-2 border rounded focus:outline-none focus:border-indigo-300"
-            />
-            <button
-              onClick={handleSendMessage}
-              className="ml-4 bg-indigo-600 text-white rounded px-4 py-2 focus:outline-none"
-            >
-              Send
-            </button>
+            <form onSubmit={handleSubmit} className="flex items-center">
+              <input
+                value={input}
+                onChange={handleInputChange}
+                placeholder="Type your message here..."
+                className="flex-grow p-2 border rounded focus:outline-none focus:border-indigo-300"
+              />
+              <button
+                type="submit"
+                className="ml-4 bg-indigo-600 text-white rounded px-4 py-2 focus:outline-none"
+              >
+                Send
+              </button>
+            </form>
           </div>
         </div>
       </div>
